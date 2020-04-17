@@ -40,8 +40,11 @@ class Aloca:
         data = self._data[indice]
         sublist = list(
             filter(lambda x: weights[x] == w and x not in ignorar, data))
-        while len(sublist) == 0:
+        inicio = w
+        while len(sublist) == 0:            
             w += 1
+            if (w - inicio) > 2:
+                raise Exception('Solução não encontrada!')
             sublist = list(
                 filter(lambda x: weights[x] == w and x not in ignorar, data))
         self._idx[indice] = w
